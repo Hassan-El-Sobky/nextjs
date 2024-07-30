@@ -1,23 +1,26 @@
-"use clinet"
+
 import React from 'react'
+
+
+async function  test(){
+  let data =await fetch('https://jsonplaceholder.typicode.com/users');
+   let jsonData= await data.json();
+  return jsonData;
+ }
+
+
+
 
 export default async function page({data}) {
  
-//    async function  test(){
-//          let data =await fetch('http://localhost:9000/products');
-//           let jsonData= await data.json();
-//           console.log(jsonData);
-//         }
+const products= await test();
 
-    //  let products= await test();
-  
-    console.log(data);
-
+ console.log(products);
   return (
     <div>
-
-        <h3> Hlooo</h3>
-      
+         {products.map(p=>(
+          <h3 key={p.id}>{p.name}</h3>
+         ))}
     </div>
   )
 }
